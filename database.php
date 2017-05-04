@@ -1,7 +1,7 @@
 <?php
 //povezava na bazo
-$username = 'turistika';
-$password = 'turistika';
+$username = 'root';
+$password = '';
 $database = 'turistika';
 $server = 'localhost';
 //povezali smo se na bazo
