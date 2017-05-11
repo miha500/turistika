@@ -4,7 +4,7 @@ $username = 'turistika';
 $password = 'turistika';
 $database = 'turistika';
 $server = 'localhost';
-//povezali smo se na baz
+//povezali smo se na bazasdasdas
 $link = mysqli_connect($server, $username, $password, $database);
 //težava php in utf-8
 mysqli_query($link, "SET NAMES 'utf8'");
