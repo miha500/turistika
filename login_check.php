@@ -23,6 +23,7 @@
         $_SESSION['first_name'] = $user['first_name'];
         $_SESSION['last_name'] = $user['last_name'];
         $_SESSION['admin'] = $user['admin'];
+        $_SESSION['email'] = $user['email']; //SPREMEMBA!
         //preusmeritev na domov (index)
         header("Location: index.php");
     }
