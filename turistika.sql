@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Gostitelj: 127.0.0.1
--- Čas nastanka: 05. jun 2015 ob 10.57
--- Različica strežnika: 5.6.21
--- Različica PHP: 5.6.3
+-- Čas nastanka: 18. maj 2017 ob 12.25
+-- Različica strežnika: 10.1.16-MariaDB
+-- Različica PHP: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Zbirka podatkov: `turistika`
@@ -26,13 +26,13 @@ SET time_zone = "+00:00";
 -- Struktura tabele `comments`
 --
 
-CREATE TABLE IF NOT EXISTS `comments` (
-`id` int(11) NOT NULL,
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `destination_id` int(11) NOT NULL,
   `content` text COLLATE utf8_slovenian_ci NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Odloži podatke za tabelo `comments`
@@ -50,11 +50,11 @@ INSERT INTO `comments` (`id`, `user_id`, `destination_id`, `content`, `date_add`
 -- Struktura tabele `countries`
 --
 
-CREATE TABLE IF NOT EXISTS `countries` (
-`id` int(11) NOT NULL,
+CREATE TABLE `countries` (
+  `id` int(11) NOT NULL,
   `title` varchar(200) COLLATE utf8_slovenian_ci NOT NULL,
   `short` varchar(5) COLLATE utf8_slovenian_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Odloži podatke za tabelo `countries`
@@ -72,15 +72,15 @@ INSERT INTO `countries` (`id`, `title`, `short`) VALUES
 -- Struktura tabele `destinations`
 --
 
-CREATE TABLE IF NOT EXISTS `destinations` (
-`id` int(11) NOT NULL,
+CREATE TABLE `destinations` (
+  `id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   `title` varchar(200) COLLATE utf8_slovenian_ci NOT NULL,
   `description` text COLLATE utf8_slovenian_ci,
   `www` varchar(200) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `lat` varchar(100) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `alt` varchar(100) COLLATE utf8_slovenian_ci DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Odloži podatke za tabelo `destinations`
@@ -95,15 +95,26 @@ INSERT INTO `destinations` (`id`, `country_id`, `title`, `description`, `www`, `
 -- --------------------------------------------------------
 
 --
+-- Struktura tabele `onlineusers`
+--
+
+CREATE TABLE `onlineusers` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) COLLATE utf8_slovenian_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabele `pictures`
 --
 
-CREATE TABLE IF NOT EXISTS `pictures` (
-`id` int(11) NOT NULL,
+CREATE TABLE `pictures` (
+  `id` int(11) NOT NULL,
   `destionation_id` int(11) NOT NULL,
   `url` varchar(200) COLLATE utf8_slovenian_ci NOT NULL,
   `title` varchar(200) COLLATE utf8_slovenian_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Odloži podatke za tabelo `pictures`
@@ -126,8 +137,8 @@ INSERT INTO `pictures` (`id`, `destionation_id`, `url`, `title`) VALUES
 -- Struktura tabele `rates`
 --
 
-CREATE TABLE IF NOT EXISTS `rates` (
-`id` int(11) NOT NULL,
+CREATE TABLE `rates` (
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `destination_id` int(11) NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -140,15 +151,15 @@ CREATE TABLE IF NOT EXISTS `rates` (
 -- Struktura tabele `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-`id` int(11) NOT NULL,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
   `email` varchar(100) COLLATE utf8_slovenian_ci NOT NULL,
   `pass` varchar(50) COLLATE utf8_slovenian_ci NOT NULL,
   `first_name` varchar(50) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `last_name` varchar(50) COLLATE utf8_slovenian_ci NOT NULL,
   `avatar` varchar(200) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `admin` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Odloži podatke za tabelo `users`
@@ -166,37 +177,50 @@ INSERT INTO `users` (`id`, `email`, `pass`, `first_name`, `last_name`, `avatar`,
 -- Indeksi tabele `comments`
 --
 ALTER TABLE `comments`
- ADD PRIMARY KEY (`id`), ADD KEY `destination_id` (`destination_id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `destination_id` (`destination_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indeksi tabele `countries`
 --
 ALTER TABLE `countries`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksi tabele `destinations`
 --
 ALTER TABLE `destinations`
- ADD PRIMARY KEY (`id`), ADD KEY `country_id` (`country_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `country_id` (`country_id`);
+
+--
+-- Indeksi tabele `onlineusers`
+--
+ALTER TABLE `onlineusers`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksi tabele `pictures`
 --
 ALTER TABLE `pictures`
- ADD PRIMARY KEY (`id`), ADD KEY `destionation_id` (`destionation_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `destionation_id` (`destionation_id`);
 
 --
 -- Indeksi tabele `rates`
 --
 ALTER TABLE `rates`
- ADD PRIMARY KEY (`id`), ADD KEY `destination_id` (`destination_id`), ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `destination_id` (`destination_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indeksi tabele `users`
 --
 ALTER TABLE `users`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT zavrženih tabel
@@ -206,32 +230,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT tabele `comments`
 --
 ALTER TABLE `comments`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT tabele `countries`
 --
 ALTER TABLE `countries`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT tabele `destinations`
 --
 ALTER TABLE `destinations`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT tabele `onlineusers`
+--
+ALTER TABLE `onlineusers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT tabele `pictures`
 --
 ALTER TABLE `pictures`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT tabele `rates`
 --
 ALTER TABLE `rates`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT tabele `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
