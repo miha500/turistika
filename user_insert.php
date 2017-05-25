@@ -36,7 +36,7 @@
         {
         if (!empty($last_name) && !empty($email) && !empty($pass)
                 && ($pass == $pass2)) {
-            //vse ok
+            // s
             $pass = $salt.$pass; //geslu dodam salt
             $pass = sha1($pass); //zakodiram geslo
             $query = sprintf("INSERT INTO users (first_name, last_name, email, pass, admin) 
