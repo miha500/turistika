@@ -8,6 +8,10 @@
     E-pošta: <input type="email" name="email" placeholder="Vnesi e-pošto ..."  required="required" /><br />
     Geslo: <input type="password" name="pass" placeholder="Vnesi geslo ..."  required="required" /><br />
     Geslo (ponovi): <input type="password" name="pass2" placeholder="Vnesi geslo ..." required="required" /><br />
+    Ali ste agencija:
+    <input type="radio" name="status" value="agencija"/>Da
+    <input type="radio" name="status" value="user" checked="checked"/>Ne<br />
+    <br><br />
     <input type="submit" value="Vnesi" />
     <input type="reset" value="Prekliči" />
 </form>
