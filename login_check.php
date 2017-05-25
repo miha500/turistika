@@ -4,7 +4,7 @@
     
     $email = $_POST['email'];
     $pass = $_POST['pass'];
-    
+     
     $pass = $salt.$pass; //geslu dodam "sol"
     //zakodiram geslo, zdaj ga lahko primerjam
     //z geslom v bazi
@@ -18,6 +18,8 @@
     
     if (mysqli_num_rows($result) == 1) {
         // vse je ok
+       
+        
         $user = mysqli_fetch_array($result);
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['first_name'] = $user['first_name'];
@@ -26,6 +28,11 @@
         $_SESSION['email'] = $user['email']; //SPREMEMBA!
         //preusmeritev na domov (index)
         header("Location: index.php");
+        
+         $sql = "INSERT INTO onlineusers (username) VALUES ('$email')";
+             mysqli_query($link, $sql);
+          
+        
     }
     else {
         //napaka v podatkih, preusmeritev nazaj
