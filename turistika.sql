@@ -19,7 +19,7 @@ Create table destinations (
 	www Varchar(200),
 	lat Varchar(100),
 	alt Varchar(100),
- Primary Key (id)) ENGINE = InnoDB;
+ Primary Key (id)) ENGINE = MyISAM;
 
 Create table users (
 	id Int NOT NULL AUTO_INCREMENT,
@@ -30,7 +30,7 @@ Create table users (
 	avatar Varchar(200),
 	admin Int NOT NULL,
 	UNIQUE (email),
- Primary Key (id)) ENGINE = InnoDB;
+ Primary Key (id)) ENGINE = MyISAM;
 
 Create table pictures (
 	id Int NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,8 @@ Create table pictures (
 	agency_id Int NOT NULL,
 	url Varchar(200) NOT NULL,
 	title Varchar(200) NOT NULL,
- Primary Key (id)) ENGINE = InnoDB;
+	description Text,
+ Primary Key (id)) ENGINE = MyISAM;
 
 Create table comments (
 	id Int NOT NULL AUTO_INCREMENT,
@@ -46,13 +47,13 @@ Create table comments (
 	user_id Int NOT NULL,
 	content Text NOT NULL,
 	date_add Timestamp NOT NULL,
- Primary Key (id)) ENGINE = InnoDB;
+ Primary Key (id)) ENGINE = MyISAM;
 
 Create table countries (
 	id Int NOT NULL AUTO_INCREMENT,
 	title Varchar(200) NOT NULL,
 	short Varchar(5) NOT NULL,
- Primary Key (id)) ENGINE = InnoDB;
+ Primary Key (id)) ENGINE = MyISAM;
 
 Create table rates (
 	id Int NOT NULL AUTO_INCREMENT,
@@ -63,15 +64,16 @@ Create table rates (
 	duration Int NOT NULL,
 	date_start Timestamp,
 	date_end Timestamp,
- Primary Key (id)) ENGINE = InnoDB;
+ Primary Key (id)) ENGINE = MyISAM;
 
 Create table videos (
 	id Int NOT NULL AUTO_INCREMENT,
 	agency_id Int NOT NULL,
 	destination_id Int NOT NULL,
 	url Varchar(100) NOT NULL,
-	desc Text,
- Primary Key (id)) ENGINE = InnoDB;
+	title Varchar(75) NOT NULL,
+	description Text,
+ Primary Key (id)) ENGINE = MyISAM;
 
 Create table agencies (
 	id Int NOT NULL AUTO_INCREMENT,
@@ -79,16 +81,16 @@ Create table agencies (
 	name Varchar(50) NOT NULL,
 	url Varchar(100) NOT NULL,
 	avatar Varchar(200),
-	desc Text,
+	description Text,
 	verification Int NOT NULL,
- Primary Key (id)) ENGINE = InnoDB;
+ Primary Key (id)) ENGINE = MyISAM;
 
 Create table agency_comments (
 	id Int NOT NULL AUTO_INCREMENT,
 	user_id Int NOT NULL,
 	agency_id Int NOT NULL,
 	date Timestamp,
- Primary Key (id)) ENGINE = InnoDB;
+ Primary Key (id)) ENGINE = MyISAM;
 
 
 Alter table pictures add Foreign Key (destionation_id) references destinations (id) on delete  restrict on update  restrict;
