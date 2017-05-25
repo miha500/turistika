@@ -1,7 +1,7 @@
 <?php
     include_once 'header.php';
 ?>
-        <table boarder="3">
+        <table border="3">
             <tr>
                 <th>ime</th>
                 <th>email</th>
@@ -20,6 +20,8 @@
                 }
         
         ?>
+        <input type="submit" value="Accept" />
+        <input type="reset" value="Deny" />
         </table>
 <?php
     include_once 'footer.php';
