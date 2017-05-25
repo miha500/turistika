@@ -39,8 +39,8 @@
             //vse ok
             $pass = $salt.$pass; //geslu dodam salt
             $pass = sha1($pass); //zakodiram geslo
-            $query = sprintf("INSERT INTO users (first_name, last_name, email, pass) 
-                          VALUES ('%s','%s','%s','$pass')",
+            $query = sprintf("INSERT INTO users (first_name, last_name, email, pass, admin) 
+                          VALUES ('%s','%s','%s','$pass', 3)", //admin atriibut je 3, če admin še ni preveru.
                         mysqli_real_escape_string($link, $first_name),
                         mysqli_real_escape_string($link, $last_name),
                         mysqli_real_escape_string($link, $email));
