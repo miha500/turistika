@@ -5,9 +5,13 @@
     $email = $_POST['email'];
     $pass = $_POST['pass'];
      
-    $pass = $salt.$pass; //geslu dodam "sol"
+    $pass = $salt.$pass; 
+    
+  
+    //geslu dodam "sol"
     //zakodiram geslo, zdaj ga lahko primerjam
     //z geslom v bazi
+    
     $pass = sha1($pass); 
     
     $query = sprintf("SELECT * FROM users 
