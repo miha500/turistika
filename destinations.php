@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_array($result)) {
         echo '<a href="destination.php?id='.$row['did'].'">';
         $query = "SELECT * 
                   FROM pictures 
-                  WHERE destionation_id=".$row['did'].'
+                  WHERE destination_id=".$row['did'].'
                   LIMIT 1'; 
         //echo $query;
         $r = mysqli_query($link, $query);
@@ -43,6 +43,9 @@ while ($row = mysqli_fetch_array($result)) {
         echo '<span class="destination_country">'.$row['short'].'</span>';
     echo '</div>';    
 }
+
+
+
 ?>
 <div class="clear"></div>
 </div>

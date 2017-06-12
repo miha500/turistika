@@ -12,12 +12,26 @@
     }
     
     $id = (int) $_GET['id'];
-    
-    $query = "SELECT * FROM destinations WHERE id = $id";
+    // Sprememba dodau sm INNER JOIN
+    $query = "SELECT * FROM destinations d INNER JOIN agencies a ON a.id=d.agency_id WHERE d.id = $id";
     $result = mysqli_query($link, $query);
     $destination = mysqli_fetch_array($result);
+    
+    $_SESSION['destination_id'] = $id;
+    //To sm js naredu-MIHA
+    
+    
 ?>
-<h2><?php echo $destination['title'];?> 
+<!--- 
+MY WORK!!
+-->
+
+<form method="post" action="users_destinations_insert.php">    
+    <input type="submit" name="submit" value="PRIJAVI SE!">    
+</form>
+<p>Agencija: <?php $destination['a.title'];?></p>
+
+<h2><?php echo $destination['d.title'];?> 
     <div class="ocena">
         <a href="rate.php?id=<?php echo $id; ?>&rate=1">
             <img src="img/star.png" alt="ocena" />
@@ -68,7 +82,7 @@
     
     <?php
         $query = "SELECT * FROM pictures
-                  WHERE destionation_id = $id";
+                  WHERE destination_id = $id";
         $result = mysqli_query($link, $query);
         while ($row = mysqli_fetch_array($result)) {
             //echo '<a href="img/image-1.jpg" data-lightbox="image-1" data-title="My caption">Image #1</a>';
