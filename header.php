@@ -55,19 +55,9 @@
                                             }
                                             else {
                                                 
-                                                
-                                                    if ($_SESSION['admin'] == 1) //to sm js dodau xd
-                                                    {
-                                                
-                                                echo '<li><a href="OnlineUsersList.php">Online Users</a></li>'; //to sm js dodau xd 
-                                               
-                                                    }
-                                                
-                                                
                                                 echo '<li><a href="logout.php">Odjava ('.
                                                         $_SESSION['first_name'].' )</a></li>';
                                             }
-                                            
                                         ?>
 					                                   
 										
