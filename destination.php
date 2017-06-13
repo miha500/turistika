@@ -13,9 +13,17 @@
     
     $id = (int) $_GET['id'];
     // Sprememba dodau sm INNER JOIN
-    $query = "SELECT * FROM destinations d INNER JOIN agencies a ON a.id=d.agency_id WHERE d.id = $id";
+    $query = "SELECT * FROM destinations WHERE id = $id";
     $result = mysqli_query($link, $query);
     $destination = mysqli_fetch_array($result);
+    
+    $destination_id = $destination['agency_id'];
+    
+    $query2 = "SELECT * FROM agencies WHERE id=$destination_id";
+    $result2 = mysqli_query($link, $query2);
+    $agency = mysqli_fetch_array($result2);
+
+    
     
     $_SESSION['destination_id'] = $id;
     //To sm js naredu-MIHA
@@ -29,9 +37,14 @@ MY WORK!!
 <form method="post" action="users_destinations_insert.php">    
     <input type="submit" name="submit" value="PRIJAVI SE!">    
 </form>
-<p>Agencija: <?php $destination['a.title'];?></p>
+<div>
+    <p>Agencija: <?php echo $agency['title'];?></p><br>
+    <p>Cena: <?php echo $destination['cost'];?>EUR</p><br>
+    <p>Trajanje: <?php echo $destination['duration'];?>dni</p><br>
+</div>
 
-<h2><?php echo $destination['d.title'];?> 
+
+<h2><?php echo $destination['title'];?> 
     <div class="ocena">
         <a href="rate.php?id=<?php echo $id; ?>&rate=1">
             <img src="img/star.png" alt="ocena" />

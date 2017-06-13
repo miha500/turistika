@@ -12,11 +12,11 @@
         //vse ok
         $pass = $salt.$pass; //geslu dodam salt
         $pass = sha1($pass); //zakodiram geslo
-        $query = sprintf("INSERT INTO agencies (title, user_name, email, admin, pass) 
-                          VALUES ('%s','%s','%s','%s',$pass')",
+        $query = sprintf("INSERT INTO agencies (title, user_name, pass, email, admin) 
+                          VALUES ('%s','%s','$pass','%s',$admin)",
                         mysqli_real_escape_string($link, $title),
                         mysqli_real_escape_string($link, $user_name),
-                        mysqli_real_escape_string($link, $admin),
+                        
                         mysqli_real_escape_string($link, $email));
         mysqli_query($link, $query);
         
