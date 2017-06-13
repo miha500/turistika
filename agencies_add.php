@@ -6,7 +6,7 @@
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $pass2 = $_POST['pass2'];
-    $admin = 1;
+    $admin = 0;
     
     if (!empty($user_name) && !empty($email) && !empty($pass) && ($pass == $pass2)) {
         //vse ok
