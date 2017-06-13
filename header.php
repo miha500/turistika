@@ -47,7 +47,8 @@
 				<ul>
 					<li class="current"><a href="index.php">Domov</a></li>	
                                         <li><a href="countries.php">Države</a></li>
-                                        <li><a href="destinations.php">Destinacije</a></li>					
+                                        <li><a href="destinations.php">Destinacije</a></li>
+                                        <li><a href="agencies.php">Agencije</a></li>
                                         <?php 
                                             if (!isset($_SESSION['user_id'])) {
                                                 echo '<li><a href="login.php">Prijava</a></li>';
