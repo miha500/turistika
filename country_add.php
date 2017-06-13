@@ -10,5 +10,6 @@
 </form>
 
 <?php 
+// MEMELORD 420 BLAZE IT BOI
     include_once 'footer.php';
 ?>
