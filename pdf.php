@@ -49,6 +49,24 @@ $pdf->Write(7,'Ime potovanja:'.$destination['title']);
 $pdf->SetXY (10,60);
 $pdf->Write(9,'Opis potovanja:'.$destination['description']);
 
+//insert an link and make it a link
+$pdf->SetXY (10,65);
+$pdf->Link(10, 20, 33,33, $destination['www']);
+
+
+$pdf->SetXY (10,70);
+$pdf->Write(13,'Latitude:'.$destination['lat']);
+
+$pdf->SetXY (10,75);
+$pdf->Write(15,'Altitude:'.$destination['alt']);
+
+$pdf->SetXY (10,80);
+$pdf->Write(17,'cENA:'.$destination['cost'].'EUR');
+
+$pdf->SetXY (10,85);
+$pdf->Write(19,'Trajanje:'.$destination['duration'].'dni');
+
+
 //Output the document
-$pdf->Output('example1.pdf','I'); 
+$pdf->Output($destination['title'].'.pdf','I'); 
 ?>
