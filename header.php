@@ -49,7 +49,11 @@
                                         <li><a href="countries.php">Države</a></li>
                                         <li><a href="destinations.php">Destinacije</a></li>
                                         <li><a href="agencies.php">Agencije</a></li>
+                                      
+                                        
+                                        
                                         <?php 
+                                        
                                             if (!isset($_SESSION['user_id'])) {
                                                 echo '<li><a href="login.php">Prijava</a></li>';
                                                 echo '<li><a href="registration.php">Registracija</a></li>';
@@ -59,6 +63,14 @@
                                                 
                                                 echo '<li><a href="logout.php">Odjava ('.
                                                         $_SESSION['first_name'].' )</a></li>';
+                                            }
+                                        ?>
+                                        
+                                        <?php
+                                       if (($_SESSION['admin']==1)) 
+                                             {
+                                                echo '<li><a href="agencies_validation.php">Validacija za Agencije</a></li>';
+                                                
                                             }
                                         ?>
 					                                   
