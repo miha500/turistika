@@ -22,7 +22,7 @@
                     mysqli_real_escape_string($link, $content));
     //zapišemo komentar v bazo
     mysqli_query($link, $query);
-    //preusmeritev nazaj na destinacijo
-   header("Location: destination.php?id=$destination_id");
+    //preusmeritev nazaj na agencijo
+   header("Location: agency.php?id=$agency_id");
     
 ?>
