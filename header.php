@@ -53,6 +53,7 @@
                                             if (!isset($_SESSION['user_id'])) {
                                                 echo '<li><a href="login.php">Prijava</a></li>';
                                                 echo '<li><a href="registration.php">Registracija</a></li>';
+                                                echo '<li><a href="registration_agencies.php">Registracija za Agencije</a></li>';
                                             }
                                             else {
                                                 
