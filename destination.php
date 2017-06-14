@@ -35,8 +35,16 @@ MY WORK!!
 -->
 
 <form method="post" action="users_destinations_insert.php">    
-    <input type="submit" name="submit" value="PRIJAVI SE!">    
+    <input type="submit" name="submit" value="PRIJAVI SE!"> 
+    
 </form>
+
+<br>
+
+<form method="post" action="pdf.php">    
+    <input type="submit" name="submit" value="PDF"> 
+</form>
+
 <div>
     <p>Agencija: <?php echo $agency['title'];?></p><br>
     <p>Cena: <?php echo $destination['cost'];?>EUR</p><br>
