@@ -13,7 +13,6 @@
     <input type="reset" value="Prekliči" />
 </form>
 
-<a href="registration_agencies.php" /> Registracija Za Agencije </a>
 
 <?php 
     include_once 'footer.php';

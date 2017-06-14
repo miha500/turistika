@@ -24,12 +24,12 @@ while ($row = mysqli_fetch_array($valid_result)) {
     
     $id = $row['id'];
     echo '<td>'.$row['title'].'</td>';
-    echo  "<td><a href='agencies_admin_update.php?id=" . $id . "'>UPDATE</a></td>";
+    echo  "<td><a href='agencies_admin_update.php?id=" . $id . "'>prava agencija?</a></td>";
     echo '<tr>';
 }
     echo '</form>';
         ?>
-  
+    <a href="index.php"/>nazaj </a>
         </table>
 
     </body>

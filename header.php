@@ -58,6 +58,7 @@
                                                 echo '<li><a href="login.php">Prijava</a></li>';
                                                 echo '<li><a href="registration.php">Registracija</a></li>';
                                                 echo '<li><a href="registration_agencies.php">Registracija za Agencije</a></li>';
+                                                 
                                             }
                                             else {
                                                 
@@ -67,14 +68,28 @@
                                         ?>
                                         
                                         <?php
-                                       if (($_SESSION['admin']==1)) 
+                                          if (($_SESSION['admin']==1)) 
+                                        
                                              {
                                                 echo '<li><a href="agencies_validation.php">Validacija za Agencije</a></li>';
                                                 
                                             }
+                                         
                                         ?>
-					                                   
-										
+					       
+                                        
+					   <?php 
+                                        
+                                            if (!isset($_SESSION['agencies_id'])) {
+                                         
+                                            
+                                            }
+                                            else {
+                                                
+                                                echo '<li><a href="logout.php">Odjava ('.
+                                                        $_SESSION['title'].' )</a></li>';
+                                            }
+                                        ?>					
 				</ul>
 			</nav>
 		

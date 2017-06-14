@@ -9,3 +9,4 @@ $query = sprintf("INSERT INTO users_destinations (user_id, destination_id, date)
                           VALUES ($user_id, $destination_id, CURRENT_TIMESTAMP)");
                         
         mysqli_query($link, $query);
+        
