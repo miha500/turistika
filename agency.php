@@ -9,6 +9,42 @@
     $agency = mysqli_fetch_array($result);
 ?>
 
+
+
+<div>
+   
+    <p>
+        <h2>Opis:</h2>
+        <br>
+        <?php echo $agency['description'];?>
+    </p><br>
+    <p>
+        <h3>Spletna stran:</h3>
+        <?php echo $agency['spletna'];?>
+    </p>
+    <p>
+        <h3>E-Mail:</h3>
+        <?php echo $agency['email'];?>
+    </p>
+    <?php
+        $query = "SELECT avatar
+                  FROM agencies
+                  WHERE id=".$agency['id'].'
+                  LIMIT 1'; 
+        //echo $query;
+        $r = mysqli_query($link, $query);
+        $picture = mysqli_fetch_array($r);
+        if (empty($picture['avatar'])) {
+            echo '<img src="slike/no-photo.jpg" alt="" />';
+        }
+        else {
+            echo '<img src="'.$picture['avatar'].'" alt="" />';
+        }
+    ?>
+</div>
+
+
+
 <form method="post" action="agency_comment_insert.php">
     <input type="hidden" name="agency_id"
                value="<?php echo $agency_id; ?>" />

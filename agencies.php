@@ -28,7 +28,20 @@
                 echo '</div>';
                 echo '<a href="agency.php?id='.$row['aid'].'">';
                 
-                echo '<img src="slike/no-photo.jpg" alt="" />';
+                echo '<a href="agency.php?id='.$row['aid'].'">';
+                $query = "SELECT avatar
+                          FROM agencies
+                          WHERE id=".$row['aid'].'
+                          LIMIT 1'; 
+                //echo $query;
+                $r = mysqli_query($link, $query);
+                $picture = mysqli_fetch_array($r);
+                if (empty($picture['avatar'])) {
+                    echo '<img src="slike/no-photo.jpg" alt="" />';
+                }
+                else {
+                    echo '<img src="'.$picture['avatar'].'" alt="" />';
+                }
        
                 echo '</a>';
                 echo '<span class="destination_name">'.$row['atitle'].'</span>';
