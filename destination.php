@@ -27,12 +27,63 @@
     
     $_SESSION['destination_id'] = $id;
     //To sm js naredu-MIHA
-    
-    
+     
 ?>
 <!--- 
 MY WORK!!
 -->
+
+<style>
+        @keyframes slider {
+                
+            0% {
+                left: 0;
+            }
+            20% {
+                left: 0;
+            }
+            25% {
+                left: -100%;
+            }
+            45% {
+                left: -100%;
+            }
+            50% {
+                left: -200%;
+            }
+            70% {
+                left: -200%;
+            }
+            75 {
+                left: -300%;
+            }
+            95% {
+                left: -300%;
+            }
+            100% {
+            left: -400%;
+            }
+        }
+                
+        #slider {
+            overflow: hidden;
+        }
+                
+        #slider figure img {
+            width: 20%;
+            float: left;
+        }
+                
+        #slider figure {
+            position: relative;
+            width: 500%;
+            margin: 0;
+            left: 0;
+            tet-align: left;
+            font-size: 0;
+            animation: 20s slider infinite;
+        }
+</style>
 
 <form method="post" action="users_destinations_insert.php">    
     <input type="submit" name="submit" value="PRIJAVI SE!">    
@@ -91,24 +142,29 @@ MY WORK!!
         }
     ?>
     
-    
-    
+    <div>
     <?php
         $query = "SELECT * FROM pictures
                   WHERE destination_id = $id";
         $result = mysqli_query($link, $query);
+        
+        echo '<div id="slider">';
+        echo '<figure>';
         while ($row = mysqli_fetch_array($result)) {
             //echo '<a href="img/image-1.jpg" data-lightbox="image-1" data-title="My caption">Image #1</a>';
-            
+
             echo '<a href="'.$row['url'].'" data-lightbox="gallery" 
                    data-title="'.$row['title'].'">
-                       <img src="'.$row['url'].'" 
+                       <img id="slider" src="'.$row['url'].'" 
                         alt="'.$row['title'].'" width="300px" />
                   </a>';
             
+        
             /*echo '<img src="'.$row['url'].'" 
                 alt="'.$row['title'].'" width="100" /> ';*/
         }
+        echo '</figure>';
+        echo '</div>';
     ?>
 </div>
 <h5><?php echo getCountryName($destination['country_id']);?></h5>

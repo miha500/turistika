@@ -34,6 +34,8 @@
     Longitude: <input type="text" name="alt" value="<?php echo $destination['alt']; ?>" /><br />
     <input type="submit" value="Posodobi" />
     <input type="reset" value="Prekliči" />
+    
+    <input type="text"/> <?php echo $destination['update']; ?>" <br/>
 </form>
 
 <?php

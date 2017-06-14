@@ -10,11 +10,12 @@ $result = mysqli_query($link, $query);
 <?php 
     if ($_SESSION['admin'] == 1) {
 ?>
+        
 <a href="destination_add.php">Dodaj destinacijo</a>
 <?php 
     }
 ?>
-<div id="destinations"> 
+<div id="slider"> 
 
 <?php
 while ($row = mysqli_fetch_array($result)) {
@@ -23,6 +24,7 @@ while ($row = mysqli_fetch_array($result)) {
             echo '<a href="destination_delete.php?id='.$row['did'].'" 
                 onclick="return confirm(\'Ste prepričani?\')">Izbriši</a>';
             echo ' <a href="destination_edit.php?id='.$row['did'].'">Uredi</a>';
+                    echo ' <a href="destination_edit.php?id='.$row['did'].'">Uredi</a>';
         echo '</div>';
         echo '<a href="destination.php?id='.$row['did'].'">';
         $query = "SELECT * 
@@ -43,9 +45,6 @@ while ($row = mysqli_fetch_array($result)) {
         echo '<span class="destination_country">'.$row['short'].'</span>';
     echo '</div>';    
 }
-
-
-
 ?>
 <div class="clear"></div>
 </div>
