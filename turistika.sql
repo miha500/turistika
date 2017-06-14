@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2017 at 04:53 PM
+-- Generation Time: Jun 14, 2017 at 01:52 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -41,7 +41,8 @@ CREATE TABLE `agencies` (
 --
 
 INSERT INTO `agencies` (`id`, `title`, `user_name`, `pass`, `email`, `avatar`, `admin`) VALUES
-(1, 'Kompas', 'kompas', 'kompas', 'kompas@gmail.com', NULL, 1);
+(1, 'Kompas', 'kompas', 'kompas', 'kompas@gmail.com', NULL, 1),
+(2, 'CIA', 'Cia', '7e09880f9e26878470db1a5302e48e83bd2a92b5', 'cia@gmail.com', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -56,6 +57,14 @@ CREATE TABLE `agency_comments` (
   `content` text COLLATE utf8_slovenian_ci NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+--
+-- Dumping data for table `agency_comments`
+--
+
+INSERT INTO `agency_comments` (`id`, `user_id`, `agency_id`, `content`, `date_add`) VALUES
+(3, 4, 2, 'test 3sdsasdg\r\ndsgsgsogmskgpsg\r\ngosdgdiokhgnogwnsr', '2017-06-14 09:38:08'),
+(4, 4, 2, 'SPY AGENCY NOT GOOD.', '2017-06-14 09:50:19');
 
 -- --------------------------------------------------------
 
@@ -79,7 +88,8 @@ INSERT INTO `comments` (`id`, `user_id`, `destination_id`, `content`, `date_add`
 (1, 1, 1, 'To je TOP destinacija!', '2015-06-01 07:12:25'),
 (2, 2, 1, 'Malo moram popraviti zamike!', '2015-06-01 07:59:45'),
 (3, 2, 1, 'asdasdasd', '2015-06-01 07:59:48'),
-(4, 2, 1, 'sdfsdfsdf', '2015-06-05 08:50:01');
+(4, 2, 1, 'sdfsdfsdf', '2015-06-05 08:50:01'),
+(5, 4, 1, 'TOP!', '2017-06-12 13:47:50');
 
 -- --------------------------------------------------------
 
@@ -98,10 +108,10 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`id`, `title`, `short`) VALUES
-(9, 'Avstrija', 'AUT'),
-(8, 'Bosna in hercegovina', 'BiH'),
+(6, 'Slovenija', 'SLO'),
 (7, 'Italija', 'ITA'),
-(6, 'Slovenija', 'SLO');
+(8, 'Bosna in hercegovina', 'BiH'),
+(9, 'Avstrija', 'AUT');
 
 -- --------------------------------------------------------
 
@@ -117,18 +127,20 @@ CREATE TABLE `destinations` (
   `description` text COLLATE utf8_slovenian_ci,
   `www` varchar(200) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `lat` varchar(100) COLLATE utf8_slovenian_ci DEFAULT NULL,
-  `alt` varchar(100) COLLATE utf8_slovenian_ci DEFAULT NULL
+  `alt` varchar(100) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `cost` int(11) DEFAULT NULL,
+  `duration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Dumping data for table `destinations`
 --
 
-INSERT INTO `destinations` (`id`, `country_id`, `agency_id`, `title`, `description`, `www`, `lat`, `alt`) VALUES
-(1, 6, 1, 'Trg mladost 3', 'Najboljša šola na svetu', 'vss.scv.si', '46.8437568', '15.98234765'),
-(2, 8, 1, 'VELENJE', 'saf,msdbnlfsndlkjfnsdlkjf', 'sdfbsdkfjnkl.net', '32', '34'),
-(3, 7, 1, 'Bled', 'Lep otok s cerkvijo.', 'www.bled.si', '32', '12'),
-(4, 7, 1, 'Hradčani222', 'asfdasdfsdf', 'www.nevem.com', '123', '123');
+INSERT INTO `destinations` (`id`, `country_id`, `agency_id`, `title`, `description`, `www`, `lat`, `alt`, `cost`, `duration`) VALUES
+(1, 6, 1, 'Trg mladost 3', 'Najboljša šola na svetu', 'vss.scv.si', '46.8437568', '15.98234765', 5000, 365),
+(2, 8, 1, 'VELENJE', 'saf,msdbnlfsndlkjfnsdlkjf', 'sdfbsdkfjnkl.net', '32', '34', 459, 5),
+(3, 7, 1, 'Bled', 'Lep otok s cerkvijo.', 'www.bled.si', '32', '12', 3, 7),
+(4, 7, 1, 'Hradčani222', 'asfdasdfsdf', 'www.nevem.com', '123', '123', 294, 3);
 
 -- --------------------------------------------------------
 
@@ -172,6 +184,13 @@ CREATE TABLE `rates` (
   `rate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
+--
+-- Dumping data for table `rates`
+--
+
+INSERT INTO `rates` (`id`, `user_id`, `destination_id`, `date_add`, `rate`) VALUES
+(1, 4, 1, '2017-06-12 13:53:03', 5);
+
 -- --------------------------------------------------------
 
 --
@@ -193,8 +212,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `pass`, `first_name`, `last_name`, `avatar`, `admin`) VALUES
-(1, 'miha.slatnar@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Miha', 'Slatnar', NULL, 1),
-(2, 'ej@gmail.com', 'STOP', 'ej', 'stop', NULL, 0);
+(3, 'admin@gmail.com', 'b0098f084ad999df0cf755479953dbc225907a4a', 'Admin', 'Admin', NULL, 1),
+(4, 'miha.slatnar@gmail.com', '74ed99a7fa78285c625a399701f0e49c4e037b54', 'Miha', 'Slatnar', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -205,8 +224,16 @@ INSERT INTO `users` (`id`, `email`, `pass`, `first_name`, `last_name`, `avatar`,
 CREATE TABLE `users_destinations` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `destination_id` int(11) NOT NULL
+  `destination_id` int(11) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+--
+-- Dumping data for table `users_destinations`
+--
+
+INSERT INTO `users_destinations` (`id`, `user_id`, `destination_id`, `date`) VALUES
+(1, 4, 1, '2017-06-12 14:43:44');
 
 -- --------------------------------------------------------
 
@@ -306,17 +333,17 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT for table `agencies`
 --
 ALTER TABLE `agencies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `agency_comments`
 --
 ALTER TABLE `agency_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `countries`
 --
@@ -336,17 +363,17 @@ ALTER TABLE `pictures`
 -- AUTO_INCREMENT for table `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users_destinations`
 --
 ALTER TABLE `users_destinations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `videos`
 --
