@@ -108,8 +108,23 @@ MY WORK!!
             
             /*echo '<img src="'.$row['url'].'" 
                 alt="'.$row['title'].'" width="100" /> ';*/
+            
         }
     ?>
+    
+    <br><hr>
+    <div>
+    <?php
+    $query = "SELECT * FROM pictures
+                  WHERE destination_id = $id";
+        $result = mysqli_query($link, $query);
+        while ($row = mysqli_fetch_array($result)) {
+        }?>
+
+    
+    
+    
+    
 </div>
 <h5><?php echo getCountryName($destination['country_id']);?></h5>
 <a href="<?php echo $destination['www']; ?>" target="_blank">Povezava</a>
