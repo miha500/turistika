@@ -21,7 +21,21 @@ $result = mysqli_query($link, $query);
 
 <div id="piechart" style="width: 900px; height: 500px;"></div>
 
+
+<form action="video_insert.php" method='post' enctype="multipart/form-data">
+        <input type="file" name="file"/>
+        Insert a video: <input type="text" name="video"/><br/>
+        <input type="submit" name="submit" value="Upload"/>
+    </form>
+
 <?php
+    if (isset($_POST['submit']))
+    {
+        echo "<br/>". $name. "has been uploaded";
+    }
+?>
+    
+    <?php
 while ($row = mysqli_fetch_array($result)) {
     echo '<div class="destination">';
         echo '<div class="destination_modify">';

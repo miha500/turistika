@@ -2,6 +2,8 @@
     include_once 'header.php';
     include_once 'database.php';
     
+    $video = $_POST['video'];
+    
     function getCountryName($id) {
         include 'database.php';
         $query = "SELECT * FROM countries
@@ -145,6 +147,8 @@ MY WORK!!
         Slika: <input type="file" name="fileToUpload" /><br />
         <input type="submit" value="Dodaj sliko" />
     </form>
+    
+    
     <hr />
     <?php 
         }
@@ -175,7 +179,9 @@ MY WORK!!
         echo '</figure>';
         echo '</div>';
     ?>
-    
+    <?php
+        echo '<video>'.$video.'</video>';
+    ?>   
     <br><hr>
     <div>
     <?php
@@ -184,11 +190,7 @@ MY WORK!!
         $result = mysqli_query($link, $query);
         while ($row = mysqli_fetch_array($result)) {
         }?>
-
-    
-    
-    
-    
+   
 </div>
 <h5><?php echo getCountryName($destination['country_id']);?></h5>
 <a href="<?php echo $destination['www']; ?>" target="_blank">Povezava</a>
