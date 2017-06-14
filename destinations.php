@@ -10,12 +10,16 @@ $result = mysqli_query($link, $query);
 <?php 
     if ($_SESSION['admin'] == 1) {
 ?>
-        
+
+       
 <a href="destination_add.php">Dodaj destinacijo</a>
+
+
 <?php 
     }
 ?>
-<div id="slider"> 
+
+<div id="piechart" style="width: 900px; height: 500px;"></div>
 
 <?php
 while ($row = mysqli_fetch_array($result)) {
@@ -47,7 +51,6 @@ while ($row = mysqli_fetch_array($result)) {
 }
 ?>
 <div class="clear"></div>
-</div>
 
 <?php
 include_once 'footer.php';

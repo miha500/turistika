@@ -29,6 +29,30 @@
                 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla%7CMontserrat">
                 <!--<link rel="stylesheet" href="css/screen.css">-->
                 <link rel="stylesheet" href="css/lightbox.css">
+                
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Peole traveling'],
+          ['Trg Mladosti 3',     11],
+          ['Hradčani222',      4],
+          ['Bled',  5],
+        ]);
+
+        var options = {
+          title: 'Most popular'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 	</head>
 	<body class="homepage">
 
