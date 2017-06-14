@@ -7,7 +7,9 @@ $result = mysqli_query($link, $query);
 
 while($row = mysqli_fetch_array($result)) 
 {
- echo '<a href="agency.php?id='.$row['id'].'">';
+    $title = $row['title'];
+ echo '<a href="agency.php?id='.$row['id'].'">'.$title.'</a>';
+ echo '<br>';
 
 }
 

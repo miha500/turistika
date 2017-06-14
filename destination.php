@@ -12,7 +12,7 @@
     }
     
     $id = (int) $_GET['id'];
-    // Sprememba dodau sm INNER JOIN
+    //
     $query = "SELECT * FROM destinations WHERE id = $id";
     $result = mysqli_query($link, $query);
     $destination = mysqli_fetch_array($result);
