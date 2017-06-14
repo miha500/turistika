@@ -1,17 +1,14 @@
 <?php
+    include_once 'header.php';
+    include_once 'database.php';
 
-include_once 'header.php';
-include_once 'database.php';
+    $agency_id = $_GET['id'];
 
-$agency_id = $_GET['id'];
-
-$query = "SELECT * FROM agencies WHERE id = $agency_id";
-$result = mysqli_query($link, $query);
-$agency = mysqli_fetch_array($result);
-    
+    $query = "SELECT * FROM agencies WHERE id = $agency_id";
+    $result = mysqli_query($link, $query);
+    $agency = mysqli_fetch_array($result);
 ?>
 
-<p><?php echo $agency['title'];?></p>
 <form method="post" action="agency_comment_insert.php">
     <input type="hidden" name="agency_id"
                value="<?php echo $agency_id; ?>" />
