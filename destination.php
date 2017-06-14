@@ -12,7 +12,7 @@
     }
     
     $id = (int) $_GET['id'];
-    // Sprememba dodau sm INNER JOIN
+    //
     $query = "SELECT * FROM destinations WHERE id = $id";
     $result = mysqli_query($link, $query);
     $destination = mysqli_fetch_array($result);
@@ -86,8 +86,16 @@ MY WORK!!
 </style>
 
 <form method="post" action="users_destinations_insert.php">    
-    <input type="submit" name="submit" value="PRIJAVI SE!">    
+    <input type="submit" name="submit" value="PRIJAVI SE!"> 
+    
 </form>
+
+<br>
+
+<form method="post" action="pdf.php">    
+    <input type="submit" name="submit" value="PDF"> 
+</form>
+
 <div>
     <p>Agencija: <?php echo $agency['title'];?></p><br>
     <p>Cena: <?php echo $destination['cost'];?>EUR</p><br>
@@ -162,10 +170,25 @@ MY WORK!!
         
             /*echo '<img src="'.$row['url'].'" 
                 alt="'.$row['title'].'" width="100" /> ';*/
+            
         }
         echo '</figure>';
         echo '</div>';
     ?>
+    
+    <br><hr>
+    <div>
+    <?php
+    $query = "SELECT * FROM pictures
+                  WHERE destination_id = $id";
+        $result = mysqli_query($link, $query);
+        while ($row = mysqli_fetch_array($result)) {
+        }?>
+
+    
+    
+    
+    
 </div>
 <h5><?php echo getCountryName($destination['country_id']);?></h5>
 <a href="<?php echo $destination['www']; ?>" target="_blank">Povezava</a>

@@ -1,11 +1,7 @@
+<?php 
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        
+//include_once 'header.php';
+?>
         <h1>Registracija za Agencije</h1>
 <form action="agencies_add.php" method="post">
     Ime: <input type="text" name="title" placeholder="Vnesi ime ..." /><br />
@@ -16,6 +12,6 @@
     <input type="submit" value="Vnesi" />
     <input type="reset" value="Prekliči" />
 </form>
-
-    </body>
-</html>
+<?php 
+//include_once 'footer.php';
+?>
