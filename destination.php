@@ -26,6 +26,7 @@
     
     
     $_SESSION['destination_id'] = $id;
+    $_SESSION['agency_id'] = $agency['id'];
     //To sm js naredu-MIHA
      
 ?>
