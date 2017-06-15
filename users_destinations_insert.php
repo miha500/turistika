@@ -10,3 +10,7 @@ $query = sprintf("INSERT INTO users_destinations (user_id, destination_id, date)
                         
         mysqli_query($link, $query);
         
+          
+header('Location: index.php');    
+?>
+        
