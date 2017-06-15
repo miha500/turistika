@@ -2,10 +2,10 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 14, 2017 at 01:52 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Gostitelj: 127.0.0.1
+-- Čas nastanka: 15. jun 2017 ob 12.13
+-- Različica strežnika: 10.1.21-MariaDB
+-- Različica PHP: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `turistika`
+-- Zbirka podatkov: `turistika`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agencies`
+-- Struktura tabele `agencies`
 --
 
 CREATE TABLE `agencies` (
@@ -33,21 +33,23 @@ CREATE TABLE `agencies` (
   `pass` varchar(250) COLLATE utf8_slovenian_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_slovenian_ci NOT NULL,
   `avatar` varchar(150) COLLATE utf8_slovenian_ci DEFAULT NULL,
-  `admin` int(11) NOT NULL
+  `admin` int(11) NOT NULL,
+  `description` text COLLATE utf8_slovenian_ci,
+  `spletna` text COLLATE utf8_slovenian_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `agencies`
+-- Odloži podatke za tabelo `agencies`
 --
 
-INSERT INTO `agencies` (`id`, `title`, `user_name`, `pass`, `email`, `avatar`, `admin`) VALUES
-(1, 'Kompas', 'kompas', 'kompas', 'kompas@gmail.com', NULL, 1),
-(2, 'CIA', 'Cia', '7e09880f9e26878470db1a5302e48e83bd2a92b5', 'cia@gmail.com', NULL, 1);
+INSERT INTO `agencies` (`id`, `title`, `user_name`, `pass`, `email`, `avatar`, `admin`, `description`, `spletna`) VALUES
+(1, 'Kompas', 'kompas', 'kompas', 'kompas@gmail.com', 'slike/kompas.jpg', 2, 'Kompas je odlično podjetje z več kot šesto tisoč zadovoljnimi gosti, s številnimi zvestimi poslovnimi partnerji, zadovoljnimi zaposlenimi sodelavci ter številnimi priznanji in certifikati, ki dokazujejo našo uspešno poslovno pot.\n\nVrhunsko strokovno znanje in petinšestdeset let izkušenj ter tradicije nam omogočajo, da učinkovito organiziramo različna krožna potovanja, počitniške pakete ali poslovne storitve, tako v jadranski regiji kot v Evropi ali drugod po svetu.', 'http://www.kompas.si/'),
+(2, 'CIA', 'Cia', '7e09880f9e26878470db1a5302e48e83bd2a92b5', 'cia@gmail.com', 'slike/cia-logo.png', 2, 'The Central Intelligence Agency (CIA) is a civilian foreign intelligence service of the United States federal government, tasked with gathering, processing, and analyzing national security information from around the world, primarily through the use of human intelligence (HUMINT). As one of the principal members of the U.S. Intelligence Community (IC), the CIA reports to the Director of National Intelligence and is primarily focused on providing intelligence for the President and Cabinet.', 'http://cia.com/');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agency_comments`
+-- Struktura tabele `agency_comments`
 --
 
 CREATE TABLE `agency_comments` (
@@ -59,17 +61,19 @@ CREATE TABLE `agency_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `agency_comments`
+-- Odloži podatke za tabelo `agency_comments`
 --
 
 INSERT INTO `agency_comments` (`id`, `user_id`, `agency_id`, `content`, `date_add`) VALUES
-(3, 4, 2, 'test 3sdsasdg\r\ndsgsgsogmskgpsg\r\ngosdgdiokhgnogwnsr', '2017-06-14 09:38:08'),
-(4, 4, 2, 'SPY AGENCY NOT GOOD.', '2017-06-14 09:50:19');
+(1, 3, 2, 'O yeah daddy', '2017-06-14 09:32:11'),
+(2, 3, 1, 'hmm', '2017-06-14 10:09:02'),
+(3, 3, 1, 'comment', '2017-06-14 16:00:26'),
+(4, 3, 1, 'Dj komentiri da vidim če komentira', '2017-06-15 05:48:30');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Struktura tabele `comments`
 --
 
 CREATE TABLE `comments` (
@@ -81,7 +85,7 @@ CREATE TABLE `comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `comments`
+-- Odloži podatke za tabelo `comments`
 --
 
 INSERT INTO `comments` (`id`, `user_id`, `destination_id`, `content`, `date_add`) VALUES
@@ -89,12 +93,16 @@ INSERT INTO `comments` (`id`, `user_id`, `destination_id`, `content`, `date_add`
 (2, 2, 1, 'Malo moram popraviti zamike!', '2015-06-01 07:59:45'),
 (3, 2, 1, 'asdasdasd', '2015-06-01 07:59:48'),
 (4, 2, 1, 'sdfsdfsdf', '2015-06-05 08:50:01'),
-(5, 4, 1, 'TOP!', '2017-06-12 13:47:50');
+(5, 4, 1, 'TOP!', '2017-06-12 13:47:50'),
+(6, 3, 5, 'ok', '2017-06-14 10:02:42'),
+(7, 3, 1, 'fd<sdf', '2017-06-14 10:15:23'),
+(9, 3, 1, 'funny', '2017-06-14 10:35:39'),
+(10, 3, 1, 'that\'s that', '2017-06-14 15:59:51');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `countries`
+-- Struktura tabele `countries`
 --
 
 CREATE TABLE `countries` (
@@ -104,7 +112,7 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `countries`
+-- Odloži podatke za tabelo `countries`
 --
 
 INSERT INTO `countries` (`id`, `title`, `short`) VALUES
@@ -116,7 +124,7 @@ INSERT INTO `countries` (`id`, `title`, `short`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `destinations`
+-- Struktura tabele `destinations`
 --
 
 CREATE TABLE `destinations` (
@@ -133,7 +141,7 @@ CREATE TABLE `destinations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `destinations`
+-- Odloži podatke za tabelo `destinations`
 --
 
 INSERT INTO `destinations` (`id`, `country_id`, `agency_id`, `title`, `description`, `www`, `lat`, `alt`, `cost`, `duration`) VALUES
@@ -145,7 +153,7 @@ INSERT INTO `destinations` (`id`, `country_id`, `agency_id`, `title`, `descripti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pictures`
+-- Struktura tabele `pictures`
 --
 
 CREATE TABLE `pictures` (
@@ -156,7 +164,7 @@ CREATE TABLE `pictures` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `pictures`
+-- Odloži podatke za tabelo `pictures`
 --
 
 INSERT INTO `pictures` (`id`, `destination_id`, `url`, `title`) VALUES
@@ -173,7 +181,7 @@ INSERT INTO `pictures` (`id`, `destination_id`, `url`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rates`
+-- Struktura tabele `rates`
 --
 
 CREATE TABLE `rates` (
@@ -185,16 +193,18 @@ CREATE TABLE `rates` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `rates`
+-- Odloži podatke za tabelo `rates`
 --
 
 INSERT INTO `rates` (`id`, `user_id`, `destination_id`, `date_add`, `rate`) VALUES
-(1, 4, 1, '2017-06-12 13:53:03', 5);
+(1, 4, 1, '2017-06-12 13:53:03', 5),
+(2, 3, 1, '2017-06-14 09:57:18', 4),
+(3, 3, 5, '2017-06-14 10:02:01', 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktura tabele `users`
 --
 
 CREATE TABLE `users` (
@@ -208,17 +218,18 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `users`
+-- Odloži podatke za tabelo `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `pass`, `first_name`, `last_name`, `avatar`, `admin`) VALUES
 (3, 'admin@gmail.com', 'b0098f084ad999df0cf755479953dbc225907a4a', 'Admin', 'Admin', NULL, 1),
-(4, 'miha.slatnar@gmail.com', '74ed99a7fa78285c625a399701f0e49c4e037b54', 'Miha', 'Slatnar', NULL, 0);
+(4, 'miha.slatnar@gmail.com', '74ed99a7fa78285c625a399701f0e49c4e037b54', 'Miha', 'Slatnar', NULL, 0),
+(5, 'boi@gmail.com', '1764ee783dcea8f4f5de8ceba7f4477102f17286', 'boi', 'boi', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_destinations`
+-- Struktura tabele `users_destinations`
 --
 
 CREATE TABLE `users_destinations` (
@@ -229,16 +240,19 @@ CREATE TABLE `users_destinations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Dumping data for table `users_destinations`
+-- Odloži podatke za tabelo `users_destinations`
 --
 
 INSERT INTO `users_destinations` (`id`, `user_id`, `destination_id`, `date`) VALUES
-(1, 4, 1, '2017-06-12 14:43:44');
+(1, 4, 1, '2017-06-12 14:43:44'),
+(2, 3, 1, '2017-06-14 09:31:08'),
+(3, 3, 1, '2017-06-14 09:58:01'),
+(4, 3, 1, '2017-06-14 09:58:09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `videos`
+-- Struktura tabele `videos`
 --
 
 CREATE TABLE `videos` (
@@ -249,17 +263,17 @@ CREATE TABLE `videos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
--- Indexes for dumped tables
+-- Indeksi zavrženih tabel
 --
 
 --
--- Indexes for table `agencies`
+-- Indeksi tabele `agencies`
 --
 ALTER TABLE `agencies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `agency_comments`
+-- Indeksi tabele `agency_comments`
 --
 ALTER TABLE `agency_comments`
   ADD PRIMARY KEY (`id`),
@@ -267,7 +281,7 @@ ALTER TABLE `agency_comments`
   ADD KEY `agency_id` (`agency_id`);
 
 --
--- Indexes for table `comments`
+-- Indeksi tabele `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
@@ -275,13 +289,13 @@ ALTER TABLE `comments`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `countries`
+-- Indeksi tabele `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `destinations`
+-- Indeksi tabele `destinations`
 --
 ALTER TABLE `destinations`
   ADD PRIMARY KEY (`id`),
@@ -289,14 +303,14 @@ ALTER TABLE `destinations`
   ADD KEY `agency_id` (`agency_id`);
 
 --
--- Indexes for table `pictures`
+-- Indeksi tabele `pictures`
 --
 ALTER TABLE `pictures`
   ADD PRIMARY KEY (`id`),
   ADD KEY `destination_id` (`destination_id`);
 
 --
--- Indexes for table `rates`
+-- Indeksi tabele `rates`
 --
 ALTER TABLE `rates`
   ADD PRIMARY KEY (`id`),
@@ -304,14 +318,14 @@ ALTER TABLE `rates`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `users`
+-- Indeksi tabele `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `users_destinations`
+-- Indeksi tabele `users_destinations`
 --
 ALTER TABLE `users_destinations`
   ADD PRIMARY KEY (`id`),
@@ -319,63 +333,63 @@ ALTER TABLE `users_destinations`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `videos`
+-- Indeksi tabele `videos`
 --
 ALTER TABLE `videos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `destination_id` (`destination_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT zavrženih tabel
 --
 
 --
--- AUTO_INCREMENT for table `agencies`
+-- AUTO_INCREMENT tabele `agencies`
 --
 ALTER TABLE `agencies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `agency_comments`
+-- AUTO_INCREMENT tabele `agency_comments`
 --
 ALTER TABLE `agency_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT tabele `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `countries`
+-- AUTO_INCREMENT tabele `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `destinations`
+-- AUTO_INCREMENT tabele `destinations`
 --
 ALTER TABLE `destinations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `pictures`
+-- AUTO_INCREMENT tabele `pictures`
 --
 ALTER TABLE `pictures`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `rates`
+-- AUTO_INCREMENT tabele `rates`
 --
 ALTER TABLE `rates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `users_destinations`
+-- AUTO_INCREMENT tabele `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT tabele `users_destinations`
 --
 ALTER TABLE `users_destinations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `videos`
+-- AUTO_INCREMENT tabele `videos`
 --
 ALTER TABLE `videos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
