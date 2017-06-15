@@ -2,7 +2,7 @@
     include_once 'header.php';
     include_once 'database.php';
     
-    $video = $_POST['video'];
+ //   $video = $_POST['video'];
     
     function getCountryName($id) {
         include 'database.php';
