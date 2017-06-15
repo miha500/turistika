@@ -3,7 +3,7 @@
     include_once 'database.php';
     
 
-
+    $video = $_POST['video'];
 
 
     
