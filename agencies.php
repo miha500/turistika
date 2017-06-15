@@ -11,7 +11,7 @@
     if ($_SESSION['admin'] == 1) {
 ?>
   
-<a href="destination_add.php">Dodaj destinacijo</a>
+
 
 <?php 
     }

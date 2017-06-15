@@ -2,10 +2,7 @@
     include_once 'header.php';
     include_once 'database.php';
     
-
-
-
-
+    $video = $_POST['video'];
     
     function getCountryName($id) {
         include 'database.php';
@@ -101,24 +98,6 @@ MY WORK!!
 <form method="post" action="pdf.php">    
     <input type="submit" name="submit" value="PDF"> 
 </form>
-
-
-<?php 
-if(isset($_SESSION['agencies_id']) && $agency['id'] == $_SESSION['agencies_id'])
-{
-echo '<a href="user_destination_display.php">PRIJAVLJENI UPORABNIKI</a>';
-
-
-}
-?>
-
-<form action="video_insert.php" method='post' enctype="multipart/form-data">
-        <input type="file" name="file"/>
-        Insert a video: <input type="text" name="video"/><br/>
-        <input type="submit" name="submit" value="Upload"/><br>
-    </form>
-
-
 
 <div>
     <p>Agencija: <?php echo $agency['title'];?></p><br>
