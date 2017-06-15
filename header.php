@@ -32,26 +32,43 @@
                 
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+        <?php
+      include 'database.php';
+      
+
+       $query="SELECT d.title,count(ud.user_id) as num FROM users_destinations ud INNER JOIN destinations d on d.id=ud.destination_id group by title ORDER BY num DESC";
+       
+       $result= mysqli_query($link, $query);
+       
+      $count= mysqli_num_rows($result);
+      ?>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Peole traveling'],
-          ['Trg Mladosti 3',     11],
-          ['Hradčani222',      4],
-          ['Bled',  5],
-        ]);
+         var data = google.visualization.arrayToDataTable([
+      ['Destinacije', 'Število'],
+      <?php
+      if($count > 0){
+          while($row = mysqli_fetch_assoc($result)){
+            echo "['".$row['title']."', ".$row['num']."],";
+          }
+      }
+      ?>
+    ]);
 
         var options = {
-          title: 'Most popular'
+          title: 'Priljubljene destinacije'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
       }
+          
     </script>
 	</head>
 	<body class="homepage">
