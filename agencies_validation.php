@@ -1,10 +1,7 @@
-
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
+<?php
+include_once 'header.php';
+include_once 'database.php';
+?>
 
         <table border="2">
     <tr>
@@ -32,5 +29,6 @@ while ($row = mysqli_fetch_array($valid_result)) {
     <a href="index.php"/>nazaj </a>
         </table>
 
-    </body>
-</html>
+<?php
+    include_once 'footer.php';
+?>

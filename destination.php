@@ -126,13 +126,6 @@ echo '<form action="video_insert.php" method="post">;
 </br>
 
 
-<form action="video_insert.php" method='post'>
-        
-        Insert a video: <input type="text" name="video"/><br/>
-        <input type="submit" name="submit" value="Upload"/><br>
-    </form>
-
-
 
 <div>
     <p>Agencija: <?php echo $agency['title'];?></p><br>
@@ -215,9 +208,7 @@ echo '<form action="video_insert.php" method="post">;
         echo '</figure>';
         echo '</div>';
     ?>
-    <?php
-        echo '<video>'.$video.'</video>';
-    ?>   
+   
     <br><hr>
     <div>
     <?php
@@ -257,6 +248,33 @@ function loadScript()
 window.onload = loadScript;
 </script>
 <div id="googleMap" style="width:500px;height:500px;"></div>
+
+
+<?php
+$query1 = "SELECT * FROM videos WHERE destination_id = $id";
+    $result1 = mysqli_query($link, $query1);
+    while($row = mysqli_fetch_array($result1))
+    {
+        echo '<a href="'.$row['url'].'">'.$row['title'].'</a>'.'<br>';
+    }
+    
+    
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="comments">
     <h2>Komentarji</h2>
