@@ -1,6 +1,6 @@
 <?php 
 
-//include_once 'header.php';
+include_once 'header.php';
 ?>
         <h1>Registracija za Agencije</h1>
 <form action="agencies_add.php" method="post">
@@ -13,5 +13,5 @@
     <input type="reset" value="Prekliči" />
 </form>
 <?php 
-//include_once 'footer.php';
+include_once 'footer.php';
 ?>
