@@ -13,7 +13,7 @@
                   WHERE id = $id";
         $result = mysqli_query($link, $query);
         $country = mysqli_fetch_array($result);
-        return $country['title'];
+       // return $country['title'];
     }
     
     $id = (int) $_GET['id'];
