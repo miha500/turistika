@@ -2,12 +2,7 @@
     include_once 'database.php';
     include_once 'session.php';
     
-    
-    
-    
-    
-    
-         if ($_POST['ok'] == 'value1')
+         if ($_POST['ok'] == 'value1' && !isset($_SESSION['agencies_id']) && !isset($_SESSION['user_id']))
      {
           $email = $_POST['email'];
           $pass = $_POST['pass'];
@@ -17,7 +12,7 @@
     //z geslom v bazi
     $pass = sha1($pass); 
     
-    $query = sprintf("SELECT * FROM agencies WHERE email = '%s' AND pass = '$pass'",
+    $query = sprintf("SELECT * FROM agencies WHERE email = '%s' AND pass = '$pass' AND admin=2",
         mysqli_real_escape_string($link, $email));
     $result = mysqli_query($link, $query);
     
@@ -37,7 +32,7 @@
         header("Location: login.php?e=1");        
     }
      }
-    else{
+    else if (!isset($_SESSION['agencies_id']) && !isset($_SESSION['user_id'])){
      
     $email = $_POST['email'];
     $pass = $_POST['pass'];
@@ -70,7 +65,9 @@
     }
     
     }
-    
+    else{
+        header ("Location: login.php");
+    }
     
     
     
