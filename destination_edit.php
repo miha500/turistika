@@ -2,6 +2,7 @@
     include_once 'header.php';
     include_once 'database.php';
     
+
     $id = (int) $_GET['id']; //id destinacije, ki jo urejamo
     $query = "SELECT * FROM destinations WHERE id = $id";
     $result = mysqli_query($link, $query);
