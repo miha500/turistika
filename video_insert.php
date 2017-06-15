@@ -1,16 +1,18 @@
 <?php
+include_once 'database.php';
 include_once 'session.php';
-//sprejmemo id destinacije, za katero
-//nalagamo slike
 
-if (isset($_POST['submit']))
-{
-    $name = $_FILES ['file']['name'];
-    $temp = $_FILES ['file']['temp_name'];
+    $title = $_POST['title'];
+    $url = $_POST['url'];
+    $destination_id = $_SESSION['destination_id'];
     
-    move_uploaded_file($temp,"uploaded/". $name);
-    $url = "http://localhost/phpmyadmin/video";
-    mysql_query("INSERT INTO videos VALUES ('', '$name', '$url'");
-}
-
-?>
+  
+        $query = sprintf("INSERT INTO videos (destination_id, title, url) 
+                          VALUES ($destination_id,'%s','%s')",
+                        mysqli_real_escape_string($link, $title),
+                        mysqli_real_escape_string($link, $url));
+                        
+        mysqli_query($link, $query);
+        
+        //preusmeritev na prijavo
+        header("Location: destinations.php");

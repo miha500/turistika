@@ -113,14 +113,21 @@ if(isset($_SESSION['agencies_id']) && $agency['id'] == $_SESSION['agencies_id'])
     
 </form>';
 
-
+echo '<form action="video_insert.php" method="post">;
+        
+        Title <input type="text" name="title"/><br/>
+        URL: <input type="text" name="url"/><br/>
+        <input type="submit" name="submit" value="Upload"/><br>
+    </form>';
 
 
 }
 ?>
 </br>
-<form action="video_insert.php" method='post' enctype="multipart/form-data">
-        <input type="file" name="file"/>
+
+
+<form action="video_insert.php" method='post'>
+        
         Insert a video: <input type="text" name="video"/><br/>
         <input type="submit" name="submit" value="Upload"/><br>
     </form>
