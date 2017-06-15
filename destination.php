@@ -102,16 +102,23 @@ MY WORK!!
     <input type="submit" name="submit" value="PDF"> 
 </form>
 
+</br>
 
 <?php 
 if(isset($_SESSION['agencies_id']) && $agency['id'] == $_SESSION['agencies_id'])
 {
-echo '<a href="user_destination_display.php">PRIJAVLJENI UPORABNIKI</a>';
+//echo '<a href="user_destination_display.php">PRIJAVLJENI UPORABNIKI</a>';
+    echo '<form method="post" action="user_destination_display.php">    
+    <input type="submit" name="submit" value="PRIJAVLJENI UPORABNIKI"> 
+    
+</form>';
+
+
 
 
 }
 ?>
-
+</br>
 <form action="video_insert.php" method='post' enctype="multipart/form-data">
         <input type="file" name="file"/>
         Insert a video: <input type="text" name="video"/><br/>

@@ -1,19 +1,16 @@
+<?php 
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
+include_once 'header.php';
+?>
         
         <h1> Prijavljeni uporabniki na destinacijo </h1>
         <table border="2">
             <tr>
-            <th>ime</th>
-             <th>priimek</th>
-             <th>e-mail</th>
+            <td>ime</td>
+             <td>priimek</td>
+             <td>e-mail</td>
             </tr>
-        
+            </br>
         <?php
           include_once 'database.php';
     
@@ -34,5 +31,7 @@ while ($row = mysqli_fetch_array($ime_result)) {
 echo '</form>';
         ?>
     </table>
-    </body>
-</html>
+        
+        <?php
+include_once 'footer.php';
+?>

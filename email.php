@@ -1,10 +1,7 @@
+<?php 
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
+include_once 'header.php';
+?>
         <?php
          $email =$_GET['email'];
         ?>
@@ -16,6 +13,6 @@
     <input type="submit" value="Pošlji" />
 </form>
         
-        
-    </body>
-</html>
+<?php
+include_once 'footer.php';
+?>
